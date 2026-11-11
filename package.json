@@ -1,0 +1,17 @@
+{
+  "name": "outside-in-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Evidence-backed company profiles from public signals only.",
+  "license": "MIT",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "workspaces": ["cli", "mcp"],
+  "scripts": {
+    "build": "npm run build -w outside-in && npm run build -w outside-in-mcp",
+    "test": "npm run build -w outside-in && node --test cli/test/",
+    "demo:serve": "node examples/demo-site/server.mjs",
+    "demo": "node scripts/run-demo.mjs",
+    "media:diagrams": "node scripts/make-diagrams.mjs"
+  }
+}
