@@ -1,0 +1,23 @@
+{
+  "name": "outside-in-tutorial",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Remotion project for the Outside-In tutorial video and the README stills.",
+  "license": "MIT",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "node render.mjs",
+    "stills": "node render.mjs --stills-only"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.543",
+    "@remotion/google-fonts": "4.0.543",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "remotion": "4.0.543"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "typescript": "^5.9.0"
+  }
+}
