@@ -1,0 +1,1026 @@
+{
+  "target": "localhost:4173",
+  "origin": "http://localhost:4173",
+  "generatedAt": "2026-11-11T21:32:50.762Z",
+  "tool": {
+    "name": "outside-in",
+    "version": "0.1.0"
+  },
+  "synthesis": {
+    "mode": "heuristic"
+  },
+  "summary": "13 findings about localhost:4173, drawn from 45 pieces of public evidence across 6 signal types (confidence: 8 high, 3 medium, 2 low). Every claim below cites the evidence it rests on and lists what could not be established.",
+  "findings": [
+    {
+      "claim": "Stripe is in active use (payments; domain verified): it appears both in the site's page source and in the domain's DNS records.",
+      "evidence": [
+        {
+          "id": "T7",
+          "signal": "tech",
+          "source": "http://localhost:4173/",
+          "excerpt": "<script type=\"text/plain\" data-demo-inert src=\"https://js.stripe.com/v3/\">",
+          "observedAt": "2026-11-11T21:32:46.727Z",
+          "note": "Homepage HTML indicating Stripe"
+        },
+        {
+          "id": "D3",
+          "signal": "dns",
+          "source": "dns:localhost?type=TXT",
+          "excerpt": "TXT: stripe-verification=…",
+          "observedAt": "2026-11-11T21:32:50.510Z",
+          "note": "Domain verification record for Stripe"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "How much of the business runs through Stripe, and on which plan, is not public."
+      ]
+    },
+    {
+      "claim": "The domain is configured for Google Workspace (receives mail), SendGrid (transactional e-mail), Zendesk (support e-mail), Atlassian (domain verified), Google Search Console (domain verified) and Cloudflare (hosts DNS).",
+      "evidence": [
+        {
+          "id": "D1",
+          "signal": "dns",
+          "source": "dns:localhost?type=MX",
+          "excerpt": "MX: 1 aspmx.l.google.com.; 5 alt1.aspmx.l.google.com.",
+          "observedAt": "2026-11-11T21:32:50.510Z",
+          "note": "Mail exchanger records"
+        },
+        {
+          "id": "D2",
+          "signal": "dns",
+          "source": "dns:localhost?type=TXT",
+          "excerpt": "SPF: v=spf1 include:_spf.google.com include:sendgrid.net include:mail.zendesk.com ~all",
+          "observedAt": "2026-11-11T21:32:50.510Z",
+          "note": "Sender policy record"
+        },
+        {
+          "id": "D4",
+          "signal": "dns",
+          "source": "dns:localhost?type=TXT",
+          "excerpt": "TXT: atlassian-domain-verification=…",
+          "observedAt": "2026-11-11T21:32:50.510Z",
+          "note": "Domain verification record for Atlassian"
+        },
+        {
+          "id": "D5",
+          "signal": "dns",
+          "source": "dns:localhost?type=TXT",
+          "excerpt": "TXT: google-site-verification=…",
+          "observedAt": "2026-11-11T21:32:50.510Z",
+          "note": "Domain verification record for Google Search Console"
+        },
+        {
+          "id": "D6",
+          "signal": "dns",
+          "source": "dns:localhost?type=NS",
+          "excerpt": "NS: ada.ns.cloudflare.com., bob.ns.cloudflare.com.",
+          "observedAt": "2026-11-11T21:32:50.510Z",
+          "note": "Authoritative name servers"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "A verification record can outlive the trial or contract that created it."
+      ]
+    },
+    {
+      "claim": "Baseline security hygiene: the domain publishes a DMARC policy of \"quarantine\", and the homepage omits content-security-policy.",
+      "evidence": [
+        {
+          "id": "D8",
+          "signal": "dns",
+          "source": "dns:_dmarc.localhost?type=TXT",
+          "excerpt": "DMARC: v=DMARC1; p=quarantine; rua=mailto:[email redacted]",
+          "observedAt": "2026-11-11T21:32:50.510Z",
+          "note": "E-mail authentication policy"
+        },
+        {
+          "id": "T10",
+          "signal": "tech",
+          "source": "http://localhost:4173/",
+          "excerpt": "Security headers present: strict-transport-security, x-frame-options, x-content-type-options, referrer-policy. Not sent: content-security-policy.",
+          "observedAt": "2026-11-11T21:32:46.727Z",
+          "note": "HTTP response headers of the homepage"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "Headers and DNS policy say nothing about application security or internal controls."
+      ]
+    },
+    {
+      "claim": "Public pricing changed 5 times across 4 captures since 2023-06-14: Solo moved from $9/month to $12/month by 2024-09-02; Team moved from $29/user/month to $39/user/month by 2025-08-11; an Enterprise plan (Custom) appeared by 2025-08-11; the Free plan ($0) was gone by 2025-08-11; Solo moved from $12/month to $15/month by today.",
+      "evidence": [
+        {
+          "id": "P1",
+          "signal": "pricing",
+          "source": "http://localhost:4173/__wayback/web/20230614101500/http://localhost:4173/pricing",
+          "excerpt": "Capture of 2023-06-14: Free $0 · Solo $9/month · Team $29/user/month",
+          "observedAt": "2026-11-11T21:32:47.236Z",
+          "note": "Archived copy from the Wayback Machine"
+        },
+        {
+          "id": "P2",
+          "signal": "pricing",
+          "source": "http://localhost:4173/__wayback/web/20240902083000/http://localhost:4173/pricing",
+          "excerpt": "Capture of 2024-09-02: Free $0 · Solo $12/month · Team $29/user/month",
+          "observedAt": "2026-11-11T21:32:47.487Z",
+          "note": "Archived copy from the Wayback Machine"
+        },
+        {
+          "id": "P3",
+          "signal": "pricing",
+          "source": "http://localhost:4173/__wayback/web/20250811140000/http://localhost:4173/pricing",
+          "excerpt": "Capture of 2025-08-11: Solo $12/month · Team $39/user/month · Enterprise Custom",
+          "observedAt": "2026-11-11T21:32:47.739Z",
+          "note": "Archived copy from the Wayback Machine"
+        },
+        {
+          "id": "P4",
+          "signal": "pricing",
+          "source": "http://localhost:4173/pricing",
+          "excerpt": "Live page: Solo $15/month · Team $39/user/month · Enterprise Custom",
+          "observedAt": "2026-11-11T21:32:47.989Z",
+          "note": "Pricing page as served today"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "The exact date of each change lies somewhere between two captures.",
+        "Whether existing customers were grandfathered is not public."
+      ]
+    },
+    {
+      "claim": "8 open roles are advertised, concentrated in Engineering (2), Sales (2) and Machine learning (1).",
+      "evidence": [
+        {
+          "id": "J9",
+          "signal": "careers",
+          "source": "http://localhost:4173/careers",
+          "excerpt": "8 open roles listed. By team: Engineering 2, Sales 2, Machine learning 1, Infrastructure 1, Security 1, Design 1.",
+          "observedAt": "2026-11-11T21:32:48.243Z",
+          "note": "Count derived from the listings on the careers page"
+        },
+        {
+          "id": "J1",
+          "signal": "careers",
+          "source": "http://localhost:4173/careers#senior-backend-engineer",
+          "excerpt": "Senior Backend Engineer — Engineering — Amsterdam — posted 2026-10-20",
+          "observedAt": "2026-11-11T21:32:48.243Z",
+          "note": "Open role listed on the careers page"
+        },
+        {
+          "id": "J2",
+          "signal": "careers",
+          "source": "http://localhost:4173/careers#staff-frontend-engineer",
+          "excerpt": "Staff Frontend Engineer — Engineering — Remote — posted 2026-10-02",
+          "observedAt": "2026-11-11T21:32:48.243Z",
+          "note": "Open role listed on the careers page"
+        },
+        {
+          "id": "J3",
+          "signal": "careers",
+          "source": "http://localhost:4173/careers#machine-learning-engineer-document-understanding",
+          "excerpt": "Machine Learning Engineer, Document Understanding — Machine learning — Amsterdam — posted 2026-09-18",
+          "observedAt": "2026-11-11T21:32:48.243Z",
+          "note": "Open role listed on the careers page"
+        },
+        {
+          "id": "J4",
+          "signal": "careers",
+          "source": "http://localhost:4173/careers#site-reliability-engineer",
+          "excerpt": "Site Reliability Engineer — Infrastructure — Remote — posted 2026-09-30",
+          "observedAt": "2026-11-11T21:32:48.243Z",
+          "note": "Open role listed on the careers page"
+        },
+        {
+          "id": "J5",
+          "signal": "careers",
+          "source": "http://localhost:4173/careers#enterprise-account-executive",
+          "excerpt": "Enterprise Account Executive — Sales — London — posted 2026-10-28",
+          "observedAt": "2026-11-11T21:32:48.243Z",
+          "note": "Open role listed on the careers page"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "Open roles are not headcount: backfills, evergreen postings and unlisted hires are indistinguishable from outside."
+      ]
+    },
+    {
+      "claim": "Job text names React and Next.js, matching what the site itself runs.",
+      "evidence": [
+        {
+          "id": "J10",
+          "signal": "careers",
+          "source": "http://localhost:4173/careers",
+          "excerpt": "Technologies named in job text: Kubernetes ×2, AWS ×2, TypeScript ×1, Python ×1, Go ×1, React ×1, Next.js ×1, PostgreSQL ×1, Kafka ×1, Terraform ×1, PyTorch ×1, SOC 2 ×1, ISO 27001 ×1, SSO ×1",
+          "observedAt": "2026-11-11T21:32:48.244Z",
+          "note": "Keyword count over the careers page text"
+        },
+        {
+          "id": "T3",
+          "signal": "tech",
+          "source": "http://localhost:4173/",
+          "excerpt": "<div id=\"__next\" data-reactroot=\"\">",
+          "observedAt": "2026-11-11T21:32:46.727Z",
+          "note": "Homepage HTML indicating React"
+        },
+        {
+          "id": "T1",
+          "signal": "tech",
+          "source": "http://localhost:4173/",
+          "excerpt": "<script type=\"text/plain\" data-demo-inert src=\"/_next/static/chunks/main-4f2a91.js\">",
+          "observedAt": "2026-11-11T21:32:46.726Z",
+          "note": "Homepage HTML indicating Next.js"
+        },
+        {
+          "id": "T2",
+          "signal": "tech",
+          "source": "http://localhost:4173/",
+          "excerpt": "x-powered-by: Next.js",
+          "observedAt": "2026-11-11T21:32:46.727Z",
+          "note": "HTTP response header indicating Next.js"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": []
+    },
+    {
+      "claim": "The company announces product updates roughly every 21 days (10 entries from 2026-04-22 to 2026-10-28); the most frequent themes are Enterprise & security, Reporting and API & integrations.",
+      "evidence": [
+        {
+          "id": "C7",
+          "signal": "changelog",
+          "source": "http://localhost:4173/feed.xml",
+          "excerpt": "10 entries between 2026-04-22 and 2026-10-28; median gap 21 days.",
+          "observedAt": "2026-11-11T21:32:48.751Z",
+          "note": "Cadence derived from entry dates"
+        },
+        {
+          "id": "C8",
+          "signal": "changelog",
+          "source": "http://localhost:4173/feed.xml",
+          "excerpt": "Themes across 10 entry titles: Enterprise & security ×4, Reporting ×2, API & integrations ×2, Billing & payments ×2, AI ×1, Mobile ×1, Performance ×1",
+          "observedAt": "2026-11-11T21:32:48.752Z",
+          "note": "Keyword match over entry titles"
+        },
+        {
+          "id": "C1",
+          "signal": "changelog",
+          "source": "http://localhost:4173/changelog#scim",
+          "excerpt": "2026-10-28: SCIM provisioning for Enterprise",
+          "observedAt": "2026-11-11T21:32:48.751Z",
+          "note": "Changelog entry"
+        },
+        {
+          "id": "C2",
+          "signal": "changelog",
+          "source": "http://localhost:4173/changelog#audit-log",
+          "excerpt": "2026-10-07: Audit log export",
+          "observedAt": "2026-11-11T21:32:48.751Z",
+          "note": "Changelog entry"
+        },
+        {
+          "id": "C3",
+          "signal": "changelog",
+          "source": "http://localhost:4173/changelog#sso",
+          "excerpt": "2026-09-16: SAML single sign-on on Team and Enterprise",
+          "observedAt": "2026-11-11T21:32:48.751Z",
+          "note": "Changelog entry"
+        },
+        {
+          "id": "C4",
+          "signal": "changelog",
+          "source": "http://localhost:4173/changelog#ai-sorting",
+          "excerpt": "2026-08-26: AI auto-categorisation of expenses",
+          "observedAt": "2026-11-11T21:32:48.751Z",
+          "note": "Changelog entry"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "Announced releases undercount actual shipping; fixes and internal work are rarely listed."
+      ]
+    },
+    {
+      "claim": "The 12 most recent App Store reviews average 3.2/5, with 42% at 1-2 stars; the commonest complaints concern sync, speed and crashes.",
+      "evidence": [
+        {
+          "id": "R1",
+          "signal": "reviews",
+          "source": "http://localhost:4173/__appstore/us/rss/customerreviews/id=1234567890/sortBy=mostRecent/json",
+          "excerpt": "12 most recent reviews: average 3.2/5, 42% rated 1-2 stars. By version: v3.1: 4.6 (5), v3.2: 2.1 (7).",
+          "observedAt": "2026-11-11T21:32:50.761Z",
+          "note": "Aggregate over the public review feed"
+        },
+        {
+          "id": "R2",
+          "signal": "reviews",
+          "source": "http://localhost:4173/__appstore/us/rss/customerreviews/id=1234567890/sortBy=mostRecent/json",
+          "excerpt": "Themes in reviews rated 3 stars or lower: sync ×3, speed ×3, crashes ×1, missing features ×1, price ×1, support ×1",
+          "observedAt": "2026-11-11T21:32:50.761Z",
+          "note": "Keyword match over review text"
+        },
+        {
+          "id": "R3",
+          "signal": "reviews",
+          "source": "http://localhost:4173/__appstore/us/app/id1234567890",
+          "excerpt": "1★ (v3.2) \"Crashes on open\": The app crashes every time I open a draft. Had to go back to the website.",
+          "observedAt": "2026-11-11T21:32:50.761Z",
+          "note": "Public review, reviewer identity omitted"
+        },
+        {
+          "id": "R4",
+          "signal": "reviews",
+          "source": "http://localhost:4173/__appstore/us/app/id1234567890",
+          "excerpt": "1★ (v3.2) \"Price went up and it got worse\": Paying more for Solo and the app is slow and keeps logging me out. Support gave no response.",
+          "observedAt": "2026-11-11T21:32:50.761Z",
+          "note": "Public review, reviewer identity omitted"
+        },
+        {
+          "id": "R5",
+          "signal": "reviews",
+          "source": "http://localhost:4173/__appstore/us/app/id1234567890",
+          "excerpt": "5★ (v3.1) \"Great app\": Sending an invoice from my phone takes ten seconds.",
+          "observedAt": "2026-11-11T21:32:50.761Z",
+          "note": "Public review, reviewer identity omitted"
+        }
+      ],
+      "confidence": "high",
+      "unknowns": [
+        "This is a recent sample from one storefront, not the lifetime rating."
+      ]
+    },
+    {
+      "claim": "The public website is built with Next.js and React and is served through Vercel.",
+      "evidence": [
+        {
+          "id": "T1",
+          "signal": "tech",
+          "source": "http://localhost:4173/",
+          "excerpt": "<script type=\"text/plain\" data-demo-inert src=\"/_next/static/chunks/main-4f2a91.js\">",
+          "observedAt": "2026-11-11T21:32:46.726Z",
+          "note": "Homepage HTML indicating Next.js"
+        },
+        {
+          "id": "T2",
+          "signal": "tech",
+          "source": "http://localhost:4173/",
+          "excerpt": "x-powered-by: Next.js",
+          "observedAt": "2026-11-11T21:32:46.727Z",
+          "note": "HTTP response header indicating Next.js"
+        },
+        {
+          "id": "T3",
+          "signal": "tech",
+          "source": "http://localhost:4173/",
+          "excerpt": "<div id=\"__next\" data-reactroot=\"\">",
+          "observedAt": "2026-11-11T21:32:46.727Z",
+          "note": "Homepage HTML indicating React"
+        },
+        {
+          "id": "T4",
+          "signal": "tech",
+          "source": "http://localhost:4173/",
+          "excerpt": "x-vercel-id: (present)",
+          "observedAt": "2026-11-11T21:32:46.727Z",
+          "note": "HTTP response header indicating Vercel"
+        },
+        {
+          "id": "T5",
+          "signal": "tech",
+          "source": "http://localhost:4173/",
+          "excerpt": "server: Vercel",
+          "observedAt": "2026-11-11T21:32:46.727Z",
+          "note": "HTTP response header indicating Vercel"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [
+        "Whether the logged-in product shares this stack is not visible from the marketing site."
+      ]
+    },
+    {
+      "claim": "The site loads third-party tools for analytics (Segment), support (Intercom) and monitoring (Sentry).",
+      "evidence": [
+        {
+          "id": "T6",
+          "signal": "tech",
+          "source": "http://localhost:4173/",
+          "excerpt": "<script type=\"text/plain\" data-demo-inert src=\"https://cdn.segment.com/analytics.js/v1/DEMO/analytics.min.js\">",
+          "observedAt": "2026-11-11T21:32:46.727Z",
+          "note": "Homepage HTML indicating Segment"
+        },
+        {
+          "id": "T8",
+          "signal": "tech",
+          "source": "http://localhost:4173/",
+          "excerpt": "<script type=\"text/plain\" data-demo-inert src=\"https://widget.intercom.io/widget/demo\">",
+          "observedAt": "2026-11-11T21:32:46.727Z",
+          "note": "Homepage HTML indicating Intercom"
+        },
+        {
+          "id": "T9",
+          "signal": "tech",
+          "source": "http://localhost:4173/",
+          "excerpt": "<script type=\"text/plain\" data-demo-inert src=\"https://browser.sentry-cdn.com/8.0.0/bundle.min.js\">",
+          "observedAt": "2026-11-11T21:32:46.727Z",
+          "note": "Homepage HTML indicating Sentry"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [
+        "A script tag proves a tool is loaded, not that it is the system of record."
+      ]
+    },
+    {
+      "claim": "The company appears to be moving upmarket: it added an Enterprise plan and it dropped its Free plan, and it is hiring for enterprise-facing roles and has been shipping enterprise and security features.",
+      "evidence": [
+        {
+          "id": "P2",
+          "signal": "pricing",
+          "source": "http://localhost:4173/__wayback/web/20240902083000/http://localhost:4173/pricing",
+          "excerpt": "Capture of 2024-09-02: Free $0 · Solo $12/month · Team $29/user/month",
+          "observedAt": "2026-11-11T21:32:47.487Z",
+          "note": "Archived copy from the Wayback Machine"
+        },
+        {
+          "id": "P3",
+          "signal": "pricing",
+          "source": "http://localhost:4173/__wayback/web/20250811140000/http://localhost:4173/pricing",
+          "excerpt": "Capture of 2025-08-11: Solo $12/month · Team $39/user/month · Enterprise Custom",
+          "observedAt": "2026-11-11T21:32:47.739Z",
+          "note": "Archived copy from the Wayback Machine"
+        },
+        {
+          "id": "J5",
+          "signal": "careers",
+          "source": "http://localhost:4173/careers#enterprise-account-executive",
+          "excerpt": "Enterprise Account Executive — Sales — London — posted 2026-10-28",
+          "observedAt": "2026-11-11T21:32:48.243Z",
+          "note": "Open role listed on the careers page"
+        },
+        {
+          "id": "J6",
+          "signal": "careers",
+          "source": "http://localhost:4173/careers#solutions-consultant",
+          "excerpt": "Solutions Consultant — Sales — London — posted 2026-10-14",
+          "observedAt": "2026-11-11T21:32:48.243Z",
+          "note": "Open role listed on the careers page"
+        },
+        {
+          "id": "J7",
+          "signal": "careers",
+          "source": "http://localhost:4173/careers#security-and-compliance-lead",
+          "excerpt": "Security and Compliance Lead — Security — Amsterdam — posted 2026-08-27",
+          "observedAt": "2026-11-11T21:32:48.243Z",
+          "note": "Open role listed on the careers page"
+        },
+        {
+          "id": "C8",
+          "signal": "changelog",
+          "source": "http://localhost:4173/feed.xml",
+          "excerpt": "Themes across 10 entry titles: Enterprise & security ×4, Reporting ×2, API & integrations ×2, Billing & payments ×2, AI ×1, Mobile ×1, Performance ×1",
+          "observedAt": "2026-11-11T21:32:48.752Z",
+          "note": "Keyword match over entry titles"
+        }
+      ],
+      "confidence": "medium",
+      "unknowns": [
+        "This is an interpretation of public signals; the company has not been asked and its internal strategy is unknown.",
+        "Revenue mix by customer size is not public."
+      ]
+    },
+    {
+      "claim": "The backend likely involves TypeScript, Python, Go, PostgreSQL, Kafka, Kubernetes, Terraform and AWS: these are named in job text but cannot be confirmed from outside.",
+      "evidence": [
+        {
+          "id": "J10",
+          "signal": "careers",
+          "source": "http://localhost:4173/careers",
+          "excerpt": "Technologies named in job text: Kubernetes ×2, AWS ×2, TypeScript ×1, Python ×1, Go ×1, React ×1, Next.js ×1, PostgreSQL ×1, Kafka ×1, Terraform ×1, PyTorch ×1, SOC 2 ×1, ISO 27001 ×1, SSO ×1",
+          "observedAt": "2026-11-11T21:32:48.244Z",
+          "note": "Keyword count over the careers page text"
+        }
+      ],
+      "confidence": "low",
+      "unknowns": [
+        "Job posts mix current stack, planned migrations and nice-to-haves.",
+        "No server-side technology can be verified without access the tool does not seek."
+      ]
+    },
+    {
+      "claim": "Version 3.2 of the app may have introduced a regression: its reviews average 2.1 against 4.6 for version 3.1.",
+      "evidence": [
+        {
+          "id": "R1",
+          "signal": "reviews",
+          "source": "http://localhost:4173/__appstore/us/rss/customerreviews/id=1234567890/sortBy=mostRecent/json",
+          "excerpt": "12 most recent reviews: average 3.2/5, 42% rated 1-2 stars. By version: v3.1: 4.6 (5), v3.2: 2.1 (7).",
+          "observedAt": "2026-11-11T21:32:50.761Z",
+          "note": "Aggregate over the public review feed"
+        },
+        {
+          "id": "R2",
+          "signal": "reviews",
+          "source": "http://localhost:4173/__appstore/us/rss/customerreviews/id=1234567890/sortBy=mostRecent/json",
+          "excerpt": "Themes in reviews rated 3 stars or lower: sync ×3, speed ×3, crashes ×1, missing features ×1, price ×1, support ×1",
+          "observedAt": "2026-11-11T21:32:50.761Z",
+          "note": "Keyword match over review text"
+        }
+      ],
+      "confidence": "low",
+      "unknowns": [
+        "Small per-version samples; a rating dip can also follow a pricing or policy change rather than a bug."
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "T1",
+      "signal": "tech",
+      "source": "http://localhost:4173/",
+      "excerpt": "<script type=\"text/plain\" data-demo-inert src=\"/_next/static/chunks/main-4f2a91.js\">",
+      "observedAt": "2026-11-11T21:32:46.726Z",
+      "note": "Homepage HTML indicating Next.js"
+    },
+    {
+      "id": "T2",
+      "signal": "tech",
+      "source": "http://localhost:4173/",
+      "excerpt": "x-powered-by: Next.js",
+      "observedAt": "2026-11-11T21:32:46.727Z",
+      "note": "HTTP response header indicating Next.js"
+    },
+    {
+      "id": "T3",
+      "signal": "tech",
+      "source": "http://localhost:4173/",
+      "excerpt": "<div id=\"__next\" data-reactroot=\"\">",
+      "observedAt": "2026-11-11T21:32:46.727Z",
+      "note": "Homepage HTML indicating React"
+    },
+    {
+      "id": "T4",
+      "signal": "tech",
+      "source": "http://localhost:4173/",
+      "excerpt": "x-vercel-id: (present)",
+      "observedAt": "2026-11-11T21:32:46.727Z",
+      "note": "HTTP response header indicating Vercel"
+    },
+    {
+      "id": "T5",
+      "signal": "tech",
+      "source": "http://localhost:4173/",
+      "excerpt": "server: Vercel",
+      "observedAt": "2026-11-11T21:32:46.727Z",
+      "note": "HTTP response header indicating Vercel"
+    },
+    {
+      "id": "T6",
+      "signal": "tech",
+      "source": "http://localhost:4173/",
+      "excerpt": "<script type=\"text/plain\" data-demo-inert src=\"https://cdn.segment.com/analytics.js/v1/DEMO/analytics.min.js\">",
+      "observedAt": "2026-11-11T21:32:46.727Z",
+      "note": "Homepage HTML indicating Segment"
+    },
+    {
+      "id": "T7",
+      "signal": "tech",
+      "source": "http://localhost:4173/",
+      "excerpt": "<script type=\"text/plain\" data-demo-inert src=\"https://js.stripe.com/v3/\">",
+      "observedAt": "2026-11-11T21:32:46.727Z",
+      "note": "Homepage HTML indicating Stripe"
+    },
+    {
+      "id": "T8",
+      "signal": "tech",
+      "source": "http://localhost:4173/",
+      "excerpt": "<script type=\"text/plain\" data-demo-inert src=\"https://widget.intercom.io/widget/demo\">",
+      "observedAt": "2026-11-11T21:32:46.727Z",
+      "note": "Homepage HTML indicating Intercom"
+    },
+    {
+      "id": "T9",
+      "signal": "tech",
+      "source": "http://localhost:4173/",
+      "excerpt": "<script type=\"text/plain\" data-demo-inert src=\"https://browser.sentry-cdn.com/8.0.0/bundle.min.js\">",
+      "observedAt": "2026-11-11T21:32:46.727Z",
+      "note": "Homepage HTML indicating Sentry"
+    },
+    {
+      "id": "T10",
+      "signal": "tech",
+      "source": "http://localhost:4173/",
+      "excerpt": "Security headers present: strict-transport-security, x-frame-options, x-content-type-options, referrer-policy. Not sent: content-security-policy.",
+      "observedAt": "2026-11-11T21:32:46.727Z",
+      "note": "HTTP response headers of the homepage"
+    },
+    {
+      "id": "P1",
+      "signal": "pricing",
+      "source": "http://localhost:4173/__wayback/web/20230614101500/http://localhost:4173/pricing",
+      "excerpt": "Capture of 2023-06-14: Free $0 · Solo $9/month · Team $29/user/month",
+      "observedAt": "2026-11-11T21:32:47.236Z",
+      "note": "Archived copy from the Wayback Machine"
+    },
+    {
+      "id": "P2",
+      "signal": "pricing",
+      "source": "http://localhost:4173/__wayback/web/20240902083000/http://localhost:4173/pricing",
+      "excerpt": "Capture of 2024-09-02: Free $0 · Solo $12/month · Team $29/user/month",
+      "observedAt": "2026-11-11T21:32:47.487Z",
+      "note": "Archived copy from the Wayback Machine"
+    },
+    {
+      "id": "P3",
+      "signal": "pricing",
+      "source": "http://localhost:4173/__wayback/web/20250811140000/http://localhost:4173/pricing",
+      "excerpt": "Capture of 2025-08-11: Solo $12/month · Team $39/user/month · Enterprise Custom",
+      "observedAt": "2026-11-11T21:32:47.739Z",
+      "note": "Archived copy from the Wayback Machine"
+    },
+    {
+      "id": "P4",
+      "signal": "pricing",
+      "source": "http://localhost:4173/pricing",
+      "excerpt": "Live page: Solo $15/month · Team $39/user/month · Enterprise Custom",
+      "observedAt": "2026-11-11T21:32:47.989Z",
+      "note": "Pricing page as served today"
+    },
+    {
+      "id": "J1",
+      "signal": "careers",
+      "source": "http://localhost:4173/careers#senior-backend-engineer",
+      "excerpt": "Senior Backend Engineer — Engineering — Amsterdam — posted 2026-10-20",
+      "observedAt": "2026-11-11T21:32:48.243Z",
+      "note": "Open role listed on the careers page"
+    },
+    {
+      "id": "J2",
+      "signal": "careers",
+      "source": "http://localhost:4173/careers#staff-frontend-engineer",
+      "excerpt": "Staff Frontend Engineer — Engineering — Remote — posted 2026-10-02",
+      "observedAt": "2026-11-11T21:32:48.243Z",
+      "note": "Open role listed on the careers page"
+    },
+    {
+      "id": "J3",
+      "signal": "careers",
+      "source": "http://localhost:4173/careers#machine-learning-engineer-document-understanding",
+      "excerpt": "Machine Learning Engineer, Document Understanding — Machine learning — Amsterdam — posted 2026-09-18",
+      "observedAt": "2026-11-11T21:32:48.243Z",
+      "note": "Open role listed on the careers page"
+    },
+    {
+      "id": "J4",
+      "signal": "careers",
+      "source": "http://localhost:4173/careers#site-reliability-engineer",
+      "excerpt": "Site Reliability Engineer — Infrastructure — Remote — posted 2026-09-30",
+      "observedAt": "2026-11-11T21:32:48.243Z",
+      "note": "Open role listed on the careers page"
+    },
+    {
+      "id": "J5",
+      "signal": "careers",
+      "source": "http://localhost:4173/careers#enterprise-account-executive",
+      "excerpt": "Enterprise Account Executive — Sales — London — posted 2026-10-28",
+      "observedAt": "2026-11-11T21:32:48.243Z",
+      "note": "Open role listed on the careers page"
+    },
+    {
+      "id": "J6",
+      "signal": "careers",
+      "source": "http://localhost:4173/careers#solutions-consultant",
+      "excerpt": "Solutions Consultant — Sales — London — posted 2026-10-14",
+      "observedAt": "2026-11-11T21:32:48.243Z",
+      "note": "Open role listed on the careers page"
+    },
+    {
+      "id": "J7",
+      "signal": "careers",
+      "source": "http://localhost:4173/careers#security-and-compliance-lead",
+      "excerpt": "Security and Compliance Lead — Security — Amsterdam — posted 2026-08-27",
+      "observedAt": "2026-11-11T21:32:48.243Z",
+      "note": "Open role listed on the careers page"
+    },
+    {
+      "id": "J8",
+      "signal": "careers",
+      "source": "http://localhost:4173/careers#product-designer",
+      "excerpt": "Product Designer — Design — Remote — posted 2026-09-09",
+      "observedAt": "2026-11-11T21:32:48.243Z",
+      "note": "Open role listed on the careers page"
+    },
+    {
+      "id": "J9",
+      "signal": "careers",
+      "source": "http://localhost:4173/careers",
+      "excerpt": "8 open roles listed. By team: Engineering 2, Sales 2, Machine learning 1, Infrastructure 1, Security 1, Design 1.",
+      "observedAt": "2026-11-11T21:32:48.243Z",
+      "note": "Count derived from the listings on the careers page"
+    },
+    {
+      "id": "J10",
+      "signal": "careers",
+      "source": "http://localhost:4173/careers",
+      "excerpt": "Technologies named in job text: Kubernetes ×2, AWS ×2, TypeScript ×1, Python ×1, Go ×1, React ×1, Next.js ×1, PostgreSQL ×1, Kafka ×1, Terraform ×1, PyTorch ×1, SOC 2 ×1, ISO 27001 ×1, SSO ×1",
+      "observedAt": "2026-11-11T21:32:48.244Z",
+      "note": "Keyword count over the careers page text"
+    },
+    {
+      "id": "C1",
+      "signal": "changelog",
+      "source": "http://localhost:4173/changelog#scim",
+      "excerpt": "2026-10-28: SCIM provisioning for Enterprise",
+      "observedAt": "2026-11-11T21:32:48.751Z",
+      "note": "Changelog entry"
+    },
+    {
+      "id": "C2",
+      "signal": "changelog",
+      "source": "http://localhost:4173/changelog#audit-log",
+      "excerpt": "2026-10-07: Audit log export",
+      "observedAt": "2026-11-11T21:32:48.751Z",
+      "note": "Changelog entry"
+    },
+    {
+      "id": "C3",
+      "signal": "changelog",
+      "source": "http://localhost:4173/changelog#sso",
+      "excerpt": "2026-09-16: SAML single sign-on on Team and Enterprise",
+      "observedAt": "2026-11-11T21:32:48.751Z",
+      "note": "Changelog entry"
+    },
+    {
+      "id": "C4",
+      "signal": "changelog",
+      "source": "http://localhost:4173/changelog#ai-sorting",
+      "excerpt": "2026-08-26: AI auto-categorisation of expenses",
+      "observedAt": "2026-11-11T21:32:48.751Z",
+      "note": "Changelog entry"
+    },
+    {
+      "id": "C5",
+      "signal": "changelog",
+      "source": "http://localhost:4173/changelog#api-v2",
+      "excerpt": "2026-08-05: Public API v2 and webhooks",
+      "observedAt": "2026-11-11T21:32:48.751Z",
+      "note": "Changelog entry"
+    },
+    {
+      "id": "C6",
+      "signal": "changelog",
+      "source": "http://localhost:4173/changelog#ios-3-2",
+      "excerpt": "2026-07-15: iOS app 3.2 with offline invoices",
+      "observedAt": "2026-11-11T21:32:48.751Z",
+      "note": "Changelog entry"
+    },
+    {
+      "id": "C7",
+      "signal": "changelog",
+      "source": "http://localhost:4173/feed.xml",
+      "excerpt": "10 entries between 2026-04-22 and 2026-10-28; median gap 21 days.",
+      "observedAt": "2026-11-11T21:32:48.751Z",
+      "note": "Cadence derived from entry dates"
+    },
+    {
+      "id": "C8",
+      "signal": "changelog",
+      "source": "http://localhost:4173/feed.xml",
+      "excerpt": "Themes across 10 entry titles: Enterprise & security ×4, Reporting ×2, API & integrations ×2, Billing & payments ×2, AI ×1, Mobile ×1, Performance ×1",
+      "observedAt": "2026-11-11T21:32:48.752Z",
+      "note": "Keyword match over entry titles"
+    },
+    {
+      "id": "D1",
+      "signal": "dns",
+      "source": "dns:localhost?type=MX",
+      "excerpt": "MX: 1 aspmx.l.google.com.; 5 alt1.aspmx.l.google.com.",
+      "observedAt": "2026-11-11T21:32:50.510Z",
+      "note": "Mail exchanger records"
+    },
+    {
+      "id": "D2",
+      "signal": "dns",
+      "source": "dns:localhost?type=TXT",
+      "excerpt": "SPF: v=spf1 include:_spf.google.com include:sendgrid.net include:mail.zendesk.com ~all",
+      "observedAt": "2026-11-11T21:32:50.510Z",
+      "note": "Sender policy record"
+    },
+    {
+      "id": "D3",
+      "signal": "dns",
+      "source": "dns:localhost?type=TXT",
+      "excerpt": "TXT: stripe-verification=…",
+      "observedAt": "2026-11-11T21:32:50.510Z",
+      "note": "Domain verification record for Stripe"
+    },
+    {
+      "id": "D4",
+      "signal": "dns",
+      "source": "dns:localhost?type=TXT",
+      "excerpt": "TXT: atlassian-domain-verification=…",
+      "observedAt": "2026-11-11T21:32:50.510Z",
+      "note": "Domain verification record for Atlassian"
+    },
+    {
+      "id": "D5",
+      "signal": "dns",
+      "source": "dns:localhost?type=TXT",
+      "excerpt": "TXT: google-site-verification=…",
+      "observedAt": "2026-11-11T21:32:50.510Z",
+      "note": "Domain verification record for Google Search Console"
+    },
+    {
+      "id": "D6",
+      "signal": "dns",
+      "source": "dns:localhost?type=NS",
+      "excerpt": "NS: ada.ns.cloudflare.com., bob.ns.cloudflare.com.",
+      "observedAt": "2026-11-11T21:32:50.510Z",
+      "note": "Authoritative name servers"
+    },
+    {
+      "id": "D7",
+      "signal": "dns",
+      "source": "dns:localhost?type=CAA",
+      "excerpt": "CAA: 0 issue \"letsencrypt.org\"",
+      "observedAt": "2026-11-11T21:32:50.510Z",
+      "note": "Certificate authorities allowed to issue for the domain"
+    },
+    {
+      "id": "D8",
+      "signal": "dns",
+      "source": "dns:_dmarc.localhost?type=TXT",
+      "excerpt": "DMARC: v=DMARC1; p=quarantine; rua=mailto:[email redacted]",
+      "observedAt": "2026-11-11T21:32:50.510Z",
+      "note": "E-mail authentication policy"
+    },
+    {
+      "id": "R1",
+      "signal": "reviews",
+      "source": "http://localhost:4173/__appstore/us/rss/customerreviews/id=1234567890/sortBy=mostRecent/json",
+      "excerpt": "12 most recent reviews: average 3.2/5, 42% rated 1-2 stars. By version: v3.1: 4.6 (5), v3.2: 2.1 (7).",
+      "observedAt": "2026-11-11T21:32:50.761Z",
+      "note": "Aggregate over the public review feed"
+    },
+    {
+      "id": "R2",
+      "signal": "reviews",
+      "source": "http://localhost:4173/__appstore/us/rss/customerreviews/id=1234567890/sortBy=mostRecent/json",
+      "excerpt": "Themes in reviews rated 3 stars or lower: sync ×3, speed ×3, crashes ×1, missing features ×1, price ×1, support ×1",
+      "observedAt": "2026-11-11T21:32:50.761Z",
+      "note": "Keyword match over review text"
+    },
+    {
+      "id": "R3",
+      "signal": "reviews",
+      "source": "http://localhost:4173/__appstore/us/app/id1234567890",
+      "excerpt": "1★ (v3.2) \"Crashes on open\": The app crashes every time I open a draft. Had to go back to the website.",
+      "observedAt": "2026-11-11T21:32:50.761Z",
+      "note": "Public review, reviewer identity omitted"
+    },
+    {
+      "id": "R4",
+      "signal": "reviews",
+      "source": "http://localhost:4173/__appstore/us/app/id1234567890",
+      "excerpt": "1★ (v3.2) \"Price went up and it got worse\": Paying more for Solo and the app is slow and keeps logging me out. Support gave no response.",
+      "observedAt": "2026-11-11T21:32:50.761Z",
+      "note": "Public review, reviewer identity omitted"
+    },
+    {
+      "id": "R5",
+      "signal": "reviews",
+      "source": "http://localhost:4173/__appstore/us/app/id1234567890",
+      "excerpt": "5★ (v3.1) \"Great app\": Sending an invoice from my phone takes ten seconds.",
+      "observedAt": "2026-11-11T21:32:50.761Z",
+      "note": "Public review, reviewer identity omitted"
+    }
+  ],
+  "unknowns": [],
+  "collection": {
+    "userAgent": "outside-in/0.1 (public-signals research tool)",
+    "minDelayMs": 250,
+    "requests": [
+      {
+        "url": "http://localhost:4173/robots.txt",
+        "status": 200,
+        "outcome": "fetched",
+        "at": "2026-11-11T21:32:46.473Z"
+      },
+      {
+        "url": "http://localhost:4173/",
+        "status": 200,
+        "outcome": "fetched",
+        "at": "2026-11-11T21:32:46.726Z"
+      },
+      {
+        "url": "http://localhost:4173/__wayback/cdx/search/cdx?url=localhost%3A4173%2Fpricing&output=json&fl=timestamp,original,statuscode,digest&filter=statuscode:200&collapse=digest&limit=400",
+        "status": 200,
+        "outcome": "fetched",
+        "at": "2026-11-11T21:32:46.978Z"
+      },
+      {
+        "url": "http://localhost:4173/__wayback/web/20230614101500id_/http://localhost:4173/pricing",
+        "status": 200,
+        "outcome": "fetched",
+        "at": "2026-11-11T21:32:47.233Z"
+      },
+      {
+        "url": "http://localhost:4173/__wayback/web/20240902083000id_/http://localhost:4173/pricing",
+        "status": 200,
+        "outcome": "fetched",
+        "at": "2026-11-11T21:32:47.485Z"
+      },
+      {
+        "url": "http://localhost:4173/__wayback/web/20250811140000id_/http://localhost:4173/pricing",
+        "status": 200,
+        "outcome": "fetched",
+        "at": "2026-11-11T21:32:47.737Z"
+      },
+      {
+        "url": "http://localhost:4173/pricing",
+        "status": 200,
+        "outcome": "fetched",
+        "at": "2026-11-11T21:32:47.988Z"
+      },
+      {
+        "url": "http://localhost:4173/careers",
+        "status": 200,
+        "outcome": "fetched",
+        "at": "2026-11-11T21:32:48.241Z"
+      },
+      {
+        "url": "http://localhost:4173/feed.xml",
+        "status": 200,
+        "outcome": "fetched",
+        "at": "2026-11-11T21:32:48.492Z"
+      },
+      {
+        "url": "http://localhost:4173/changelog",
+        "status": 200,
+        "outcome": "fetched",
+        "at": "2026-11-11T21:32:48.744Z"
+      },
+      {
+        "url": "http://localhost:4173/releases",
+        "status": null,
+        "outcome": "skipped-robots",
+        "detail": "disallowed by robots.txt",
+        "at": "2026-11-11T21:32:48.746Z"
+      },
+      {
+        "url": "http://localhost:4173/__doh?name=localhost&type=A",
+        "status": 200,
+        "outcome": "fetched",
+        "at": "2026-11-11T21:32:48.997Z"
+      },
+      {
+        "url": "http://localhost:4173/__doh?name=localhost&type=AAAA",
+        "status": 200,
+        "outcome": "fetched",
+        "at": "2026-11-11T21:32:49.250Z"
+      },
+      {
+        "url": "http://localhost:4173/__doh?name=localhost&type=MX",
+        "status": 200,
+        "outcome": "fetched",
+        "at": "2026-11-11T21:32:49.502Z"
+      },
+      {
+        "url": "http://localhost:4173/__doh?name=localhost&type=TXT",
+        "status": 200,
+        "outcome": "fetched",
+        "at": "2026-11-11T21:32:49.753Z"
+      },
+      {
+        "url": "http://localhost:4173/__doh?name=localhost&type=NS",
+        "status": 200,
+        "outcome": "fetched",
+        "at": "2026-11-11T21:32:50.005Z"
+      },
+      {
+        "url": "http://localhost:4173/__doh?name=localhost&type=CAA",
+        "status": 200,
+        "outcome": "fetched",
+        "at": "2026-11-11T21:32:50.258Z"
+      },
+      {
+        "url": "http://localhost:4173/__doh?name=_dmarc.localhost&type=TXT",
+        "status": 200,
+        "outcome": "fetched",
+        "at": "2026-11-11T21:32:50.510Z"
+      },
+      {
+        "url": "http://localhost:4173/__appstore/us/rss/customerreviews/id=1234567890/sortBy=mostRecent/json",
+        "status": 200,
+        "outcome": "fetched",
+        "at": "2026-11-11T21:32:50.761Z"
+      }
+    ]
+  },
+  "scope": "Public signals only. Every request is an unauthenticated GET that honours robots.txt and a per-host rate limit. Nothing behind a login is fetched and no personal data about employees is collected; e-mail addresses and phone numbers are redacted from excerpts."
+}

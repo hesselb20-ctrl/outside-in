@@ -1,0 +1,26 @@
+{
+  "A": [
+    "203.0.113.10"
+  ],
+  "AAAA": [],
+  "MX": [
+    "1 aspmx.l.google.com.",
+    "5 alt1.aspmx.l.google.com."
+  ],
+  "TXT": [
+    "\"v=spf1 include:_spf.google.com include:sendgrid.net include:mail.zendesk.com ~all\"",
+    "\"stripe-verification=demo0000000000000000000000000000\"",
+    "\"atlassian-domain-verification=demo1111111111111111\"",
+    "\"google-site-verification=demo2222222222222222\""
+  ],
+  "NS": [
+    "ada.ns.cloudflare.com.",
+    "bob.ns.cloudflare.com."
+  ],
+  "CAA": [
+    "0 issue \"letsencrypt.org\""
+  ],
+  "_dmarc": [
+    "\"v=DMARC1; p=quarantine; rua=mailto:dmarc-reports@tallybird.example\""
+  ]
+}

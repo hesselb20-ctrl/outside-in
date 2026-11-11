@@ -1,0 +1,345 @@
+{
+  "feed": {
+    "title": {
+      "label": "Customer reviews (fictional demo data)"
+    },
+    "entry": [
+      {
+        "author": {
+          "name": {
+            "label": "demo-reviewer-1"
+          },
+          "uri": {
+            "label": "{{ORIGIN}}/__appstore/reviewer/1"
+          }
+        },
+        "updated": {
+          "label": "2026-06-02T10:00:00-07:00"
+        },
+        "im:rating": {
+          "label": "5"
+        },
+        "im:version": {
+          "label": "3.1"
+        },
+        "title": {
+          "label": "Saves me hours"
+        },
+        "content": {
+          "label": "Reconciliation just works. I close the month in an afternoon now.",
+          "attributes": {
+            "type": "text"
+          }
+        }
+      },
+      {
+        "author": {
+          "name": {
+            "label": "demo-reviewer-2"
+          },
+          "uri": {
+            "label": "{{ORIGIN}}/__appstore/reviewer/2"
+          }
+        },
+        "updated": {
+          "label": "2026-06-11T10:00:00-07:00"
+        },
+        "im:rating": {
+          "label": "5"
+        },
+        "im:version": {
+          "label": "3.1"
+        },
+        "title": {
+          "label": "Finally"
+        },
+        "content": {
+          "label": "Clean, fast and my accountant likes the exports.",
+          "attributes": {
+            "type": "text"
+          }
+        }
+      },
+      {
+        "author": {
+          "name": {
+            "label": "demo-reviewer-3"
+          },
+          "uri": {
+            "label": "{{ORIGIN}}/__appstore/reviewer/3"
+          }
+        },
+        "updated": {
+          "label": "2026-06-20T10:00:00-07:00"
+        },
+        "im:rating": {
+          "label": "4"
+        },
+        "im:version": {
+          "label": "3.1"
+        },
+        "title": {
+          "label": "Solid"
+        },
+        "content": {
+          "label": "Does what it says. I wish reminders could be scheduled per client.",
+          "attributes": {
+            "type": "text"
+          }
+        }
+      },
+      {
+        "author": {
+          "name": {
+            "label": "demo-reviewer-4"
+          },
+          "uri": {
+            "label": "{{ORIGIN}}/__appstore/reviewer/4"
+          }
+        },
+        "updated": {
+          "label": "2026-07-01T10:00:00-07:00"
+        },
+        "im:rating": {
+          "label": "4"
+        },
+        "im:version": {
+          "label": "3.1"
+        },
+        "title": {
+          "label": "Good for small teams"
+        },
+        "content": {
+          "label": "Approval flow is simple. Reports could go deeper.",
+          "attributes": {
+            "type": "text"
+          }
+        }
+      },
+      {
+        "author": {
+          "name": {
+            "label": "demo-reviewer-5"
+          },
+          "uri": {
+            "label": "{{ORIGIN}}/__appstore/reviewer/5"
+          }
+        },
+        "updated": {
+          "label": "2026-07-09T10:00:00-07:00"
+        },
+        "im:rating": {
+          "label": "5"
+        },
+        "im:version": {
+          "label": "3.1"
+        },
+        "title": {
+          "label": "Great app"
+        },
+        "content": {
+          "label": "Sending an invoice from my phone takes ten seconds.",
+          "attributes": {
+            "type": "text"
+          }
+        }
+      },
+      {
+        "author": {
+          "name": {
+            "label": "demo-reviewer-6"
+          },
+          "uri": {
+            "label": "{{ORIGIN}}/__appstore/reviewer/6"
+          }
+        },
+        "updated": {
+          "label": "2026-07-18T10:00:00-07:00"
+        },
+        "im:rating": {
+          "label": "2"
+        },
+        "im:version": {
+          "label": "3.2"
+        },
+        "title": {
+          "label": "Sync broke after update"
+        },
+        "content": {
+          "label": "Since 3.2 my invoices show up twice and the totals are out of date.",
+          "attributes": {
+            "type": "text"
+          }
+        }
+      },
+      {
+        "author": {
+          "name": {
+            "label": "demo-reviewer-7"
+          },
+          "uri": {
+            "label": "{{ORIGIN}}/__appstore/reviewer/7"
+          }
+        },
+        "updated": {
+          "label": "2026-07-21T10:00:00-07:00"
+        },
+        "im:rating": {
+          "label": "1"
+        },
+        "im:version": {
+          "label": "3.2"
+        },
+        "title": {
+          "label": "Crashes on open"
+        },
+        "content": {
+          "label": "The app crashes every time I open a draft. Had to go back to the website.",
+          "attributes": {
+            "type": "text"
+          }
+        }
+      },
+      {
+        "author": {
+          "name": {
+            "label": "demo-reviewer-8"
+          },
+          "uri": {
+            "label": "{{ORIGIN}}/__appstore/reviewer/8"
+          }
+        },
+        "updated": {
+          "label": "2026-07-25T10:00:00-07:00"
+        },
+        "im:rating": {
+          "label": "2"
+        },
+        "im:version": {
+          "label": "3.2"
+        },
+        "title": {
+          "label": "Duplicates everywhere"
+        },
+        "content": {
+          "label": "Offline mode created duplicate invoices when it came back online. Sync is not updating.",
+          "attributes": {
+            "type": "text"
+          }
+        }
+      },
+      {
+        "author": {
+          "name": {
+            "label": "demo-reviewer-9"
+          },
+          "uri": {
+            "label": "{{ORIGIN}}/__appstore/reviewer/9"
+          }
+        },
+        "updated": {
+          "label": "2026-08-02T10:00:00-07:00"
+        },
+        "im:rating": {
+          "label": "3"
+        },
+        "im:version": {
+          "label": "3.2"
+        },
+        "title": {
+          "label": "Offline is nice, sync is not"
+        },
+        "content": {
+          "label": "Good idea but it takes forever to sync and I can't tell what was sent.",
+          "attributes": {
+            "type": "text"
+          }
+        }
+      },
+      {
+        "author": {
+          "name": {
+            "label": "demo-reviewer-10"
+          },
+          "uri": {
+            "label": "{{ORIGIN}}/__appstore/reviewer/10"
+          }
+        },
+        "updated": {
+          "label": "2026-08-10T10:00:00-07:00"
+        },
+        "im:rating": {
+          "label": "1"
+        },
+        "im:version": {
+          "label": "3.2"
+        },
+        "title": {
+          "label": "Price went up and it got worse"
+        },
+        "content": {
+          "label": "Paying more for Solo and the app is slow and keeps logging me out. Support gave no response.",
+          "attributes": {
+            "type": "text"
+          }
+        }
+      },
+      {
+        "author": {
+          "name": {
+            "label": "demo-reviewer-11"
+          },
+          "uri": {
+            "label": "{{ORIGIN}}/__appstore/reviewer/11"
+          }
+        },
+        "updated": {
+          "label": "2026-08-19T10:00:00-07:00"
+        },
+        "im:rating": {
+          "label": "4"
+        },
+        "im:version": {
+          "label": "3.2"
+        },
+        "title": {
+          "label": "Better after the fix"
+        },
+        "content": {
+          "label": "The latest patch fixed my duplicates. Back to being useful.",
+          "attributes": {
+            "type": "text"
+          }
+        }
+      },
+      {
+        "author": {
+          "name": {
+            "label": "demo-reviewer-12"
+          },
+          "uri": {
+            "label": "{{ORIGIN}}/__appstore/reviewer/12"
+          }
+        },
+        "updated": {
+          "label": "2026-08-30T10:00:00-07:00"
+        },
+        "im:rating": {
+          "label": "2"
+        },
+        "im:version": {
+          "label": "3.2"
+        },
+        "title": {
+          "label": "Still slow"
+        },
+        "content": {
+          "label": "Loading the dashboard on mobile lags badly compared to before.",
+          "attributes": {
+            "type": "text"
+          }
+        }
+      }
+    ]
+  }
+}

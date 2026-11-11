@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Tallybird changelog</title>
+    <link>{{ORIGIN}}/changelog</link>
+    <description>Product updates from Tallybird, a fictional company.</description>
+    <item>
+      <title>SCIM provisioning for Enterprise</title>
+      <link>{{ORIGIN}}/changelog#scim</link>
+      <pubDate>Wed, 28 Oct 2026 09:00:00 GMT</pubDate>
+      <description>Create and remove users from your identity provider.</description>
+    </item>
+    <item>
+      <title>Audit log export</title>
+      <link>{{ORIGIN}}/changelog#audit-log</link>
+      <pubDate>Wed, 07 Oct 2026 09:00:00 GMT</pubDate>
+      <description>Every change to an invoice, with who and when, exportable as CSV.</description>
+    </item>
+    <item>
+      <title>SAML single sign-on on Team and Enterprise</title>
+      <link>{{ORIGIN}}/changelog#sso</link>
+      <pubDate>Wed, 16 Sep 2026 09:00:00 GMT</pubDate>
+      <description>Sign in through Okta, Entra ID or Google Workspace.</description>
+    </item>
+    <item>
+      <title>AI auto-categorisation of expenses</title>
+      <link>{{ORIGIN}}/changelog#ai-sorting</link>
+      <pubDate>Wed, 26 Aug 2026 09:00:00 GMT</pubDate>
+      <description>Receipts are read and filed into the right ledger account.</description>
+    </item>
+    <item>
+      <title>Public API v2 and webhooks</title>
+      <link>{{ORIGIN}}/changelog#api-v2</link>
+      <pubDate>Wed, 05 Aug 2026 09:00:00 GMT</pubDate>
+      <description>A faster API with webhooks for every invoice event.</description>
+    </item>
+    <item>
+      <title>iOS app 3.2 with offline invoices</title>
+      <link>{{ORIGIN}}/changelog#ios-3-2</link>
+      <pubDate>Wed, 15 Jul 2026 09:00:00 GMT</pubDate>
+      <description>Draft and send invoices without a connection.</description>
+    </item>
+    <item>
+      <title>Custom roles and permissions</title>
+      <link>{{ORIGIN}}/changelog#roles</link>
+      <pubDate>Wed, 24 Jun 2026 09:00:00 GMT</pubDate>
+      <description>Decide exactly who can approve, send and refund.</description>
+    </item>
+    <item>
+      <title>Two-way accounting sync</title>
+      <link>{{ORIGIN}}/changelog#accounting-sync</link>
+      <pubDate>Wed, 03 Jun 2026 09:00:00 GMT</pubDate>
+      <description>Changes made in your ledger now flow back into Tallybird.</description>
+    </item>
+    <item>
+      <title>Faster dashboard loading</title>
+      <link>{{ORIGIN}}/changelog#dashboard</link>
+      <pubDate>Wed, 13 May 2026 09:00:00 GMT</pubDate>
+      <description>The overview now opens in under a second for large accounts.</description>
+    </item>
+    <item>
+      <title>Multi-currency invoice reconciliation</title>
+      <link>{{ORIGIN}}/changelog#multi-currency</link>
+      <pubDate>Wed, 22 Apr 2026 09:00:00 GMT</pubDate>
+      <description>Payments in a different currency are matched and booked automatically.</description>
+    </item>
+  </channel>
+</rss>

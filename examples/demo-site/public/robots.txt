@@ -1,0 +1,5 @@
+# Tallybird is a fictional company used to demonstrate Outside-In.
+User-agent: *
+Disallow: /admin/
+Disallow: /releases
+Allow: /
