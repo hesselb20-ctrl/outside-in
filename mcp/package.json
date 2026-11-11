@@ -1,0 +1,21 @@
+{
+  "name": "outside-in-mcp",
+  "version": "0.1.0",
+  "description": "MCP server exposing the Outside-In public-signal collectors to agents.",
+  "license": "MIT",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "bin": { "outside-in-mcp": "dist/server.js" },
+  "main": "dist/server.js",
+  "files": ["dist"],
+  "scripts": { "build": "tsc -p tsconfig.json" },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.0",
+    "outside-in": "0.1.0",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.9.0"
+  }
+}
