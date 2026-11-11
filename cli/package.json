@@ -1,0 +1,23 @@
+{
+  "name": "outside-in",
+  "version": "0.1.0",
+  "description": "Build an evidence-backed profile of any company from public signals only.",
+  "license": "MIT",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "bin": { "outside-in": "bin/outside-in.js" },
+  "main": "dist/lib.js",
+  "types": "dist/lib.d.ts",
+  "exports": { ".": { "types": "./dist/lib.d.ts", "default": "./dist/lib.js" } },
+  "files": ["bin", "dist"],
+  "scripts": { "build": "tsc -p tsconfig.json" },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.8.0",
+    "cheerio": "^1.2.0",
+    "fast-xml-parser": "^5.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.9.0"
+  }
+}
