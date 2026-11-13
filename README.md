@@ -77,6 +77,16 @@ meant for companies, not people.
    and the request log. `report.json` holds the same data for programs.
 
 <picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/scene-dark.gif">
+  <img src=".github/assets/scene-light.gif" width="100%" alt="A 3D drawing of the committed demo report: 45 small evidence blocks on the floor in six collector groups, 13 finding blocks in a row above them shaded by confidence, and each finding lighting up in turn with thin lines down to the evidence it cites.">
+</picture>
+
+<sub>The committed example report on the fictional demo company, drawn from
+[`examples/report/report.json`](examples/report/report.json): 45 evidence items grouped by collector, 13 findings
+toned high, medium or low, and every citation line the report contains. Nothing is simulated; the layout and the
+one-at-a-time lighting are for reading only.</sub>
+
+<picture>
   <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset=".github/assets/rule-mobile-04-dark.svg">
   <source media="(max-width: 600px)" srcset=".github/assets/rule-mobile-04-light.svg">
   <source media="(prefers-color-scheme: dark)" srcset=".github/assets/rule-04-dark.svg">
