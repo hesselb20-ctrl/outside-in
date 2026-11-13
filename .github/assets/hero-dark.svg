@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 330" width="800" height="330" role="img" aria-label="Outside-In: Evidence-backed company profiles from public signals.">
+<style>
+.s{font-family:'Inter','Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif}.m{font-family:ui-monospace,'SF Mono','Cascadia Mono','Segoe UI Mono',Menlo,Consolas,'Liberation Mono',monospace;letter-spacing:.14em;text-transform:uppercase}
+.ink{fill:#EDEDED}.mute{fill:#8C8C8C}.acc{fill:#FFFFFF}
+@keyframes pulse{0%,100%{opacity:.25}50%{opacity:1}}
+@keyframes dash{to{stroke-dashoffset:-48}}
+@keyframes fade{0%,100%{opacity:0}35%,65%{opacity:1}}
+@keyframes sweep{0%{transform:translateX(0)}100%{transform:translateX(var(--d))}}
+.pulse{animation:pulse 4s ease-in-out infinite}
+.flow{stroke-dasharray:3 9;animation:dash 6s linear infinite}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<rect width="800" height="330" rx="3" fill="#0A0A0A"/>
+<defs><pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#171717" stroke-width="1"/></pattern></defs>
+<rect width="800" height="330" rx="3" fill="url(#g)"/>
+<path d="M24 14H14V24" fill="none" stroke="#8C8C8C" stroke-width="1"/><path d="M776 14H786V24" fill="none" stroke="#8C8C8C" stroke-width="1"/><path d="M24 316H14V306" fill="none" stroke="#8C8C8C" stroke-width="1"/><path d="M776 316H786V306" fill="none" stroke="#8C8C8C" stroke-width="1"/>
+<text x="44" y="58" class="m mute" font-size="10">Company research</text>
+<g transform="translate(756 54)"><circle class="pulse" r="3" cx="-3" cy="0" fill="#FFFFFF"/><text x="-14" y="4" class="m acc" font-size="10" text-anchor="end">Prototype · v0.1.0 · not on npm</text></g>
+<text x="42" y="136" class="s ink" font-size="56" font-weight="600" letter-spacing="-1.5">Outside-In</text>
+<text x="44" y="170" class="s mute" font-size="16.5">Evidence-backed company profiles from public signals.</text>
+<line x1="44" y1="258" x2="756" y2="258" stroke="#2B2B2B"/>
+<rect x="44" y="257" width="56" height="2" fill="#FFFFFF" style="--d:656px;animation:sweep 16s ease-in-out infinite alternate"/>
+<text x="44" y="286" class="m mute" font-size="9">Input</text><text x="44" y="302" class="m ink" font-size="10">A company domain</text><text x="280" y="286" class="m mute" font-size="9">Output</text><text x="280" y="302" class="m ink" font-size="10">report.md + report.json</text><text x="516" y="286" class="m mute" font-size="9">Tested on</text><text x="516" y="302" class="m ink" font-size="10">Fictional demo</text>
+<path d="M483.0 104.0C607.4 104.0 644.7 165.0 731.8 165.0" fill="none" stroke="#2B2B2B"/>
+<path d="M586.2 117.0L583.9 123.7" stroke="#8C8C8C" stroke-width="1.2"/>
+<circle cx="483.0" cy="104.0" r="3" fill="#0A0A0A" stroke="#EDEDED" class="pulse" style="animation-delay:0.0s"/>
+<circle r="2" fill="#FFFFFF" opacity="0"><animateMotion path="M483.0 104.0C607.4 104.0 644.7 165.0 731.8 165.0" dur="9s" begin="0s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.6;1" calcMode="spline" keySplines=".45 0 .55 1;0 0 1 1"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.08;0.55;0.62;1" dur="9s" begin="0s" repeatCount="indefinite"/></circle><path d="M483.0 128.4C607.4 128.4 644.7 165.0 731.8 165.0" fill="none" stroke="#2B2B2B"/>
+<path d="M604.6 138.9L603.0 145.8" stroke="#8C8C8C" stroke-width="1.2"/>
+<circle cx="483.0" cy="128.4" r="3" fill="#0A0A0A" stroke="#EDEDED" class="pulse" style="animation-delay:0.7s"/>
+<circle r="2" fill="#FFFFFF" opacity="0"><animateMotion path="M483.0 128.4C607.4 128.4 644.7 165.0 731.8 165.0" dur="9s" begin="-1.5s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.6;1" calcMode="spline" keySplines=".45 0 .55 1;0 0 1 1"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.08;0.55;0.62;1" dur="9s" begin="-1.5s" repeatCount="indefinite"/></circle><path d="M483.0 152.8C607.4 152.8 644.7 165.0 731.8 165.0" fill="none" stroke="#2B2B2B"/>
+<path d="M621.7 155.4L621.1 162.4" stroke="#8C8C8C" stroke-width="1.2"/>
+<circle cx="483.0" cy="152.8" r="3" fill="#0A0A0A" stroke="#EDEDED" class="pulse" style="animation-delay:1.4s"/>
+<circle r="2" fill="#FFFFFF" opacity="0"><animateMotion path="M483.0 152.8C607.4 152.8 644.7 165.0 731.8 165.0" dur="9s" begin="-3s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.6;1" calcMode="spline" keySplines=".45 0 .55 1;0 0 1 1"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.08;0.55;0.62;1" dur="9s" begin="-3s" repeatCount="indefinite"/></circle><path d="M483.0 177.2C607.4 177.2 644.7 165.0 731.8 165.0" fill="none" stroke="#2B2B2B"/>
+<path d="M584.8 170.4L585.3 177.4" stroke="#8C8C8C" stroke-width="1.2"/>
+<circle cx="483.0" cy="177.2" r="3" fill="#0A0A0A" stroke="#EDEDED" class="pulse" style="animation-delay:2.1s"/>
+<circle r="2" fill="#FFFFFF" opacity="0"><animateMotion path="M483.0 177.2C607.4 177.2 644.7 165.0 731.8 165.0" dur="9s" begin="-4.5s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.6;1" calcMode="spline" keySplines=".45 0 .55 1;0 0 1 1"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.08;0.55;0.62;1" dur="9s" begin="-4.5s" repeatCount="indefinite"/></circle><path d="M483.0 201.6C607.4 201.6 644.7 165.0 731.8 165.0" fill="none" stroke="#2B2B2B"/>
+<path d="M603.0 184.2L604.6 191.1" stroke="#8C8C8C" stroke-width="1.2"/>
+<circle cx="483.0" cy="201.6" r="3" fill="#0A0A0A" stroke="#EDEDED" class="pulse" style="animation-delay:2.8s"/>
+<circle r="2" fill="#FFFFFF" opacity="0"><animateMotion path="M483.0 201.6C607.4 201.6 644.7 165.0 731.8 165.0" dur="9s" begin="-6s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.6;1" calcMode="spline" keySplines=".45 0 .55 1;0 0 1 1"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.08;0.55;0.62;1" dur="9s" begin="-6s" repeatCount="indefinite"/></circle><path d="M483.0 226.0C607.4 226.0 644.7 165.0 731.8 165.0" fill="none" stroke="#2B2B2B"/>
+<path d="M620.0 192.3L622.7 198.7" stroke="#8C8C8C" stroke-width="1.2"/>
+<circle cx="483.0" cy="226.0" r="3" fill="#0A0A0A" stroke="#EDEDED" class="pulse" style="animation-delay:3.5s"/>
+<circle r="2" fill="#FFFFFF" opacity="0"><animateMotion path="M483.0 226.0C607.4 226.0 644.7 165.0 731.8 165.0" dur="9s" begin="-7.5s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.6;1" calcMode="spline" keySplines=".45 0 .55 1;0 0 1 1"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.08;0.55;0.62;1" dur="9s" begin="-7.5s" repeatCount="indefinite"/></circle>
+<rect x="731.8" y="149.0" width="22.2" height="32.0" rx="1.5" fill="#111111" stroke="#FFFFFF" stroke-width="1.2"/><line x1="736.8" y1="158.6" x2="749.0" y2="158.6" stroke="#EDEDED" class="pulse" style="animation-delay:0s"/><line x1="736.8" y1="165.0" x2="749.0" y2="165.0" stroke="#EDEDED" class="pulse" style="animation-delay:1.3s"/><line x1="736.8" y1="171.4" x2="744.0" y2="171.4" stroke="#EDEDED" class="pulse" style="animation-delay:2.6s"/>
+<text x="478" y="90" class="m mute" font-size="9.5">six collectors</text>
+<text x="756" y="90" class="m mute" font-size="9.5" text-anchor="end">one cited report</text>
+</svg>
