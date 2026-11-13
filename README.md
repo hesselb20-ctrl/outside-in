@@ -1,9 +1,10 @@
-<picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset=".github/assets/hero-mobile-dark.svg">
-  <source media="(max-width: 600px)" srcset=".github/assets/hero-mobile-light.svg">
-  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/hero-dark.svg">
-  <img src=".github/assets/hero-light.svg" width="100%" alt="Outside-In. Evidence-backed company profiles from public signals. Prototype, version 0.1.0, not published on npm. Six collectors feed one report, and every line into it carries a citation.">
-</picture>
+# Outside-In
+
+Evidence-backed company profiles from public signals.
+
+<img src=".github/assets/figure.webp" width="100%" alt="3D chart. Forty-five evidence items arrive in six colours, one per collector. Thirteen findings form above them, each linked down to exactly the items it cites. The findings then sort by confidence, which follows the number of independent sources, not the number of citations.">
+
+<sub>From `examples/report/report.json` and the grading rule in `cli/src/synthesize.ts`. A fictional demo company on a local demo site.</sub>
 
 <picture>
   <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset=".github/assets/rule-mobile-01-dark.svg">
@@ -47,13 +48,6 @@ meant for companies, not people.
   <img src=".github/assets/rule-03-light.svg" width="100%" alt="03 How it works">
 </picture>
 
-<picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset=".github/assets/flow-mobile-dark.svg">
-  <source media="(max-width: 600px)" srcset=".github/assets/flow-mobile-light.svg">
-  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/flow-dark.svg">
-  <img src=".github/assets/flow-light.svg" width="100%" alt="Data flow. Collect: a company domain goes to six collectors (tech, pricing, careers, changelog, DNS, reviews), and every request passes one polite HTTP gate that honours robots.txt and waits 1.5 seconds per host. Synthesise: each observation becomes evidence with an id, a source URL and an excerpt; findings are written by offline rules or by Claude; a citation check drops findings without a valid evidence id and sets confidence from the evidence. Report: each finding has a claim, evidence, confidence and unknowns, written to report.md and report.json.">
-</picture>
-
 1. **Domain in.** `outside-in <domain>` takes one domain. An App Store id is optional and switches on
    the reviews collector.
 2. **Six collectors.** They run one after another, so evidence ids stay stable between runs. A
@@ -75,16 +69,6 @@ meant for companies, not people.
    findings, code caps the grade so that one source can never give "high".
 7. **Report.** `report.md` holds the summary, findings, what could not be established, an evidence table
    and the request log. `report.json` holds the same data for programs.
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/scene-dark.gif">
-  <img src=".github/assets/scene-light.gif" width="100%" alt="A 3D drawing of the committed demo report: 45 small evidence blocks on the floor in six collector groups, 13 finding blocks in a row above them shaded by confidence, and each finding lighting up in turn with thin lines down to the evidence it cites.">
-</picture>
-
-<sub>The committed example report on the fictional demo company, drawn from
-[`examples/report/report.json`](examples/report/report.json): 45 evidence items grouped by collector, 13 findings
-toned high, medium or low, and every citation line the report contains. Nothing is simulated; the layout and the
-one-at-a-time lighting are for reading only.</sub>
 
 <picture>
   <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset=".github/assets/rule-mobile-04-dark.svg">
