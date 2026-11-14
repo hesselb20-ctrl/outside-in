@@ -55,6 +55,10 @@ meant for companies, not people.
 7. **Report.** `report.md` holds the summary, findings, what could not be established, an evidence table
    and the request log. `report.json` holds the same data for programs.
 
+<img src=".github/assets/figure-how.webp" width="100%" alt="Plan prices from four captures of a pricing page appear on a timeline, five changes light up, then join into one finding linked to all four captures.">
+
+<sub>Demo-run values from <code>examples/report/report.json</code>. Fictional company, local demo archive.</sub>
+
 ## Capabilities
 
 What the code does today. All of it has been exercised only against the fictional demo company.
@@ -90,6 +94,10 @@ Known limits, from the code and the previous README:
 - Reviews cover Apple's App Store only, one storefront, most recent reviews only.
 - A signal is not proof of intent. Treat "low" and "medium" findings as leads to check.
 - The Claude path has never been run in this repository. The committed example uses the offline rules.
+
+<img src=".github/assets/figure-more.webp" width="100%" alt="Request ticks 250 ms apart fall into counted rows: 18 fetched, 1 robots.txt skip, 0 login walls, 0 retries, 15 unknowns; empty rows for real-company and model runs.">
+
+<sub>One offline demo run with a 250 ms gap (default 1500 ms). Not yet run on a real company or with model synthesis.</sub>
 
 ## Quick start
 
