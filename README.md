@@ -1,224 +1,212 @@
-<p align="center">
-  <img src="media/hero.png" alt="Outside-In: what is this company really doing? Evidence-backed company profiles from public signals only." width="100%">
-</p>
-
 # Outside-In
 
-**What is this company really doing? Find out from the outside, with receipts.**
+Evidence-backed company profiles from public signals.
 
-Outside-In builds an evidence-backed profile of any company from public signals only: the tech stack on its website, the history of its pricing page, its job posts, its changelog, its app reviews and its DNS records. Every claim in the report cites the source it rests on, carries a confidence level and lists what could not be established.
+<img src=".github/assets/figure.webp" width="100%" alt="3D chart. Forty-five evidence items arrive in six colours, one per collector. Thirteen findings form above them, each linked down to exactly the items it cites. The findings then sort by confidence, which follows the number of independent sources, not the number of citations.">
+
+<sub>From `examples/report/report.json` and the grading rule in `cli/src/synthesize.ts`. A fictional demo company on a local demo site.</sub>
+
+<picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset=".github/assets/rule-mobile-01-dark.svg">
+  <source media="(max-width: 600px)" srcset=".github/assets/rule-mobile-01-light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/rule-01-dark.svg">
+  <img src=".github/assets/rule-01-light.svg" width="100%" alt="01 What it is">
+</picture>
+
+Outside-In builds a profile of a company from what it publishes: its website, its pricing page and
+the archived copies of it, its job posts, its changelog, its DNS records and its App Store reviews.
+Each statement in the report cites the evidence it rests on, carries a confidence level and lists
+what the evidence cannot establish. It is a command-line tool, and the same collectors are also
+offered to AI agents as an MCP server.
+
+It is a prototype, version 0.1.0. It has been run end to end only against a fictional company served
+from this repository. It is not published on npm.
+
+<picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset=".github/assets/rule-mobile-02-dark.svg">
+  <source media="(max-width: 600px)" srcset=".github/assets/rule-mobile-02-light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/rule-02-dark.svg">
+  <img src=".github/assets/rule-02-light.svg" width="100%" alt="02 Why it exists">
+</picture>
+
+**The problem.** Research on a company usually ends in a pile of browser tabs or in a confident
+paragraph from a language model with no sources behind it. Neither can be handed to a colleague and
+checked.
+
+**What was missing.** A tool where code collects the facts first, each fact gets an id, a source URL
+and an excerpt, and only then are findings written. A finding may only cite evidence that exists, and
+its confidence comes from the evidence rather than from the wording.
+
+**Who it is for.** Anyone who needs a quick, checkable picture of a company from the outside, and
+agents that should cite their sources when they describe one. It reads only public pages. It is
+meant for companies, not people.
+
+<picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset=".github/assets/rule-mobile-03-dark.svg">
+  <source media="(max-width: 600px)" srcset=".github/assets/rule-mobile-03-light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/rule-03-dark.svg">
+  <img src=".github/assets/rule-03-light.svg" width="100%" alt="03 How it works">
+</picture>
+
+1. **Domain in.** `outside-in <domain>` takes one domain. An App Store id is optional and switches on
+   the reviews collector.
+2. **Six collectors.** They run one after another, so evidence ids stay stable between runs. A
+   collector that fails is recorded as an unknown and the others continue.
+3. **One HTTP gate.** Every request goes through `PoliteHttp`. It sends unauthenticated `GET`s only,
+   checks robots.txt before each page and each redirect, keeps at least 1.5 s between requests to one
+   host (longer if `Crawl-delay` says so), and retries once on `429` or `503`. A `401`, `403` or `407`
+   is logged as out of scope and never retried. If robots.txt fails with a server error, the origin is
+   treated as disallowed.
+4. **Evidence.** Each observation is stored with an id, a signal type, a source URL, an excerpt and a
+   time. E-mail addresses and phone numbers are removed from excerpts. DNS verification tokens are
+   cut off.
+5. **Findings.** By default deterministic offline rules write them. When `ANTHROPIC_API_KEY` is set and
+   `--no-llm` is not passed, Claude writes them instead. If that call fails, the offline rules take over
+   and the report says so.
+6. **Citation check.** Code removes any finding that cites no valid evidence id. The offline rules grade
+   confidence from the evidence: a direct observation from two or more sources is high, from one source
+   medium; an interpretation backed by two signal types is medium, by one signal low. For Claude's
+   findings, code caps the grade so that one source can never give "high".
+7. **Report.** `report.md` holds the summary, findings, what could not be established, an evidence table
+   and the request log. `report.json` holds the same data for programs.
+
+<picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset=".github/assets/rule-mobile-04-dark.svg">
+  <source media="(max-width: 600px)" srcset=".github/assets/rule-mobile-04-light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/rule-04-dark.svg">
+  <img src=".github/assets/rule-04-light.svg" width="100%" alt="04 Capabilities">
+</picture>
+
+What the code does today. All of it has been exercised only against the fictional demo company.
+
+- **Tech fingerprint.** Frameworks, CMS, hosting, CDN and third-party tools matched in the homepage
+  HTML and response headers, plus a check of five security headers. `cli/src/collectors/tech.ts`
+- **Pricing history.** Archived captures of the pricing page from the Wayback Machine CDX index
+  (5 by default), compared with the live page: plans added, removed or repriced. If robots.txt
+  disallows the pricing page, archived copies are not read either. `cli/src/collectors/wayback.ts`
+- **Job posts.** Roles by team and technologies named in job text, from structured data or job links
+  on `/careers` and `/jobs`. Greenhouse, Lever and Ashby boards are detected but not fetched.
+  `cli/src/collectors/careers.ts`
+- **Changelog.** Entries, release cadence and recurring themes from a feed or an HTML changelog.
+  `cli/src/collectors/changelog.ts`
+- **DNS.** MX, TXT, NS, CAA and DMARC records mapped to mail, e-mail-sending and SaaS vendors, through
+  the system resolver or a DNS-over-HTTPS endpoint (`--doh`). `cli/src/collectors/dns.ts`
+- **App reviews.** Recent App Store reviews from Apple's public RSS feed: average, rating by version and
+  complaint themes. Reviewer names are never read. Runs only with `--app-id`. `cli/src/collectors/reviews.ts`
+- **Synthesis and report.** Offline rules or Claude, citation check, Markdown and JSON output.
+  `cli/src/synthesize.ts`, `cli/src/report.ts`, `cli/src/cli.ts`
+- **MCP server.** Seven tools over stdio: `tech_fingerprint`, `pricing_history`, `careers`, `changelog`,
+  `dns_records`, `app_reviews` and `collect_all`. One HTTP client for the server's lifetime, so the rate
+  limit holds across calls. `mcp/src/server.ts`
+- **Demo company.** Tallybird, a fictional invoicing company. Its local server also stands in for the
+  archive, DNS and review services, so the whole pipeline runs offline. `examples/demo-site`
+
+Known limits, from the code and the previous README:
+
+- It reads the marketing site, not the logged-in product.
+- No JavaScript is executed. Content rendered in the browser is invisible to the parsers.
+- Pricing history depends on the Wayback Machine having captures.
+- Parsers are pattern-based. Unusual layouts will be missed.
+- Reviews cover Apple's App Store only, one storefront, most recent reviews only.
+- A signal is not proof of intent. Treat "low" and "medium" findings as leads to check.
+- The Claude path has never been run in this repository. The committed example uses the offline rules.
+
+<picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset=".github/assets/rule-mobile-05-dark.svg">
+  <source media="(max-width: 600px)" srcset=".github/assets/rule-mobile-05-light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/rule-05-dark.svg">
+  <img src=".github/assets/rule-05-light.svg" width="100%" alt="05 Quick start">
+</picture>
+
+Requires Node 22 or newer. The commands below were run on Windows 11 with Node 26.13.0 and npm 11.20.0.
+macOS and Linux were not tested.
 
 ```bash
-npx outside-in example.com
-```
-
-## Why
-
-Company research usually ends in one of two places: a pile of browser tabs, or a confident paragraph from a model with nothing behind it. Neither is something you can hand to a colleague.
-
-Outside-In takes a different position. Code collects the facts, and each fact becomes an evidence card with an id, a source URL, an excerpt and a timestamp. Only then does a model write findings, and it may only cite cards that exist. A finding whose citations cannot be verified is dropped. Confidence is computed from the evidence, not from how sure the sentence sounds.
-
-The result reads like this:
-
-<p align="center">
-  <img src="media/report-example.png" alt="A section of an Outside-In report: two findings, each with a confidence level, cited evidence and a list of unknowns." width="100%">
-</p>
-
-That is a styled rendering of two findings from the [example report](examples/report/report.md), which was generated against a fictional company served from this repository.
-
-## How it works
-
-<p align="center">
-  <img src="media/how-it-works.svg" alt="Signals flow into collectors, collectors produce an evidence graph, and the evidence graph becomes a report." width="100%">
-</p>
-
-1. **Signals.** Six kinds of public information about a domain.
-2. **Collectors.** One module per signal. All of them share a single HTTP client, so robots.txt, the rate limit and the user agent cannot be skipped by accident.
-3. **Evidence graph.** Every observation is stored as an evidence item. Findings point at the items that support them.
-4. **Report.** `report.md` for people and `report.json` for programs. Each finding has the shape `{ claim, evidence[], confidence, unknowns }`.
-
-<p align="center">
-  <img src="media/signals-map.svg" alt="The six signal types: tech fingerprint, pricing history, job posts, changelog and feeds, DNS and headers, app reviews, with what each is read from and what it reveals." width="100%">
-</p>
-
-### How confidence is assigned
-
-| The claim is | Backed by | Confidence |
-| --- | --- | --- |
-| observed directly | two or more distinct sources | **high** |
-| observed directly | one source | **medium** |
-| an interpretation | two or more signal types | **medium** |
-| an interpretation | one signal type | **low** |
-
-When Claude writes the findings it proposes a level, and the code then caps it: a finding that rests on a single source can never be "high".
-
-## Ethics and scope
-
-Outside-In reads what a company has chosen to publish, and nothing else.
-
-- **Public data only.** Every request is an unauthenticated `GET`. No cookies, no credentials, no forms.
-- **Nothing behind a login.** A `401` or `403` is recorded as "out of scope" and never retried or worked around.
-- **robots.txt is honoured.** It is fetched once per origin and checked before every page request, including each redirect hop. If a site's robots.txt disallows its pricing page, archived copies of that page are not read either. If robots.txt cannot be fetched because of a server error, the origin is treated as disallowed.
-- **Every request is rate-limited.** Requests to one host run one at a time, at least 1.5 seconds apart by default, or slower if the site sets a `Crawl-delay`. A `429` or `503` is retried once, after waiting as instructed.
-- **A generic user agent.** `outside-in/0.1 (public-signals research tool)`. It identifies the tool and never the person running it.
-- **No personal data on employees.** The careers collector reads roles, not people. Reviewer names are never read from the review feed. E-mail addresses and phone numbers are redacted from every excerpt, and DNS verification tokens are truncated.
-- **Unknowns are part of the output.** Each finding states what the evidence cannot establish, and the report lists everything that was skipped and why.
-
-Documented public JSON APIs (the Wayback Machine CDX index, a DNS-over-HTTPS resolver and the App Store review feed) are rate-limited and identified in the same way. robots.txt governs the crawling of pages, so it is not consulted for those API calls.
-
-This is a tool for understanding companies, not people. Please do not point it at individuals, and do respect the terms of the sites you profile.
-
-## Install
-
-Requires Node 22 or newer.
-
-```bash
-git clone https://github.com/hesselb20-ctrl/outside-in
-```
-
-```bash
+git clone https://github.com/hesselb20-ctrl/outside-in.git
 cd outside-in
-```
-
-```bash
 npm install
-```
-
-```bash
 npm run build
 ```
 
-## Quickstart
-
-Profile a company:
-
-```bash
-npx outside-in example.com
-```
-
-This writes `outside-in-example.com/report.md` and `report.json`.
-
-To have Claude (`claude-fable-5-2`) write the findings, set `ANTHROPIC_API_KEY` first. Without a key, or with `--no-llm`, the findings are written by deterministic offline rules instead, and the report says so.
-
-Useful options:
-
-| Option | What it does |
-| --- | --- |
-| `--only tech,dns` | Run a subset of: `tech`, `pricing`, `careers`, `changelog`, `dns`, `reviews` |
-| `--app-id 1234567890` | Numeric App Store id; enables the reviews collector |
-| `--max-snapshots 5` | How many archived pricing captures to compare |
-| `--delay 3000` | Minimum milliseconds between requests to one host |
-| `--no-llm` | Skip the Claude call |
-| `--doh https://dns.google/resolve` | Resolve DNS over HTTPS instead of the system resolver |
-| `--out ./reports/acme` | Output directory |
-| `--json` | Print `report.json` to stdout |
-
-Run `npx outside-in --help` for the full list.
-
-### Try it offline against the demo company
-
-The repository ships a fictional company, Tallybird, in [`examples/demo-site`](examples/demo-site). Its server also stands in for the archive, DNS and review services, so the whole pipeline runs locally and reproducibly.
-
-```bash
-npm run demo
-```
-
-That regenerates [`examples/report/report.md`](examples/report/report.md) and [`report.json`](examples/report/report.json): 13 findings from 45 pieces of evidence, across all six signals. The committed example was produced with the offline rules (`--no-llm`).
-
-Run the tests, which exercise the same demo end to end:
+Run the tests. Expect `pass 7`. They run against the local demo site; none touch the live network.
 
 ```bash
 npm test
 ```
 
-## Use it from an agent (MCP)
-
-The same collectors are exposed as an MCP server, so an agent can gather evidence itself and cite it.
-
-Claude Code:
-
-```bash
-claude mcp add outside-in -- node /absolute/path/to/outside-in/mcp/dist/server.js
-```
-
-Any MCP client that takes a JSON config (Claude Desktop, Cursor and others):
-
-```json
-{
-  "mcpServers": {
-    "outside-in": {
-      "command": "node",
-      "args": ["/absolute/path/to/outside-in/mcp/dist/server.js"],
-      "env": { "OUTSIDE_IN_DELAY_MS": "1500" }
-    }
-  }
-}
-```
-
-Tools:
-
-| Tool | Returns |
-| --- | --- |
-| `tech_fingerprint` | Frameworks, hosting, CDN and third-party tools seen in the homepage |
-| `pricing_history` | Plans added, removed or repriced across archived captures |
-| `careers` | Open roles by team and technologies named in job text |
-| `changelog` | Entries, shipping cadence and recurring themes |
-| `dns_records` | Mail, e-mail-sending and SaaS vendors revealed by DNS |
-| `app_reviews` | Average rating, rating by version and complaint themes |
-| `collect_all` | Every signal in one call, with one shared numbering of evidence ids |
-
-Each tool returns `{ signal, ok, data, evidence[], unknowns[] }`. The server keeps one HTTP client for its whole lifetime, so the rate limit holds however quickly an agent calls it.
-
-## Tutorial
-
-<p align="center">
-  <a href="media/tutorial.mp4"><img src="media/preview.gif" alt="Animated preview of the Outside-In tutorial: the question, signals flowing in, evidence cards stacking up, the confidence meter, the final report and the install command." width="100%"></a>
-</p>
-
-The preview above plays at double speed. The full 72-second version is [`media/tutorial.mp4`](media/tutorial.mp4) (1920x1080).
-
-The video is code: a [Remotion](https://www.remotion.dev) project in [`tutorial/`](tutorial). The banner and the report image at the top of this page are stills from the same project, and the two diagrams are drawn by [`scripts/make-diagrams.mjs`](scripts/make-diagrams.mjs). All of them read one palette and type scale from [`design/tokens.json`](design/tokens.json). To re-render (needs `ffmpeg` on your PATH):
+Profile the fictional demo company offline. Expect six `ok` lines and
+`13 findings (8 high, 3 medium, 2 low) from 45 evidence items`. This rewrites
+[`examples/report/report.md`](examples/report/report.md) and
+[`examples/report/report.json`](examples/report/report.json) with new timestamps.
 
 ```bash
-cd tutorial && npm install && npm run render
+npm run demo
 ```
+
+The package is not on npm. Inside a built clone the workspace links the command, so `npx` finds it.
+Expect `0.1.0`, then the full option list.
 
 ```bash
-npm run media:diagrams
+npx --no-install outside-in --version
+node cli/bin/outside-in.js --help
 ```
 
-## Repository layout
+Not run here: profiling a real domain (`npx outside-in <domain>`), the Claude synthesis path, which needs
+`ANTHROPIC_API_KEY`, and the MCP server (`node mcp/dist/server.js`). The option list is in
+`--help`; the MCP tools are described in [`mcp/src/server.ts`](mcp/src/server.ts).
 
-```
-cli/        the outside-in command and library: collectors, HTTP gate, synthesis, report
-mcp/        MCP server exposing the collectors as tools
-examples/   demo-site (a fictional company) and the report generated from it
-tutorial/   Remotion project for the video and the PNG stills
-scripts/    demo runner and SVG diagram generator
-design/     shared colour and type tokens
-media/      rendered images and video used in this README
-```
+<picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset=".github/assets/rule-mobile-06-dark.svg">
+  <source media="(max-width: 600px)" srcset=".github/assets/rule-mobile-06-light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/rule-06-dark.svg">
+  <img src=".github/assets/rule-06-light.svg" width="100%" alt="06 Stack, status, roadmap">
+</picture>
 
-## Limitations
+**Stack**
 
-- **It sees the marketing site, not the product.** The fingerprint is taken from the homepage. A logged-in app can run on a completely different stack.
-- **No JavaScript is executed.** Prices, roles or changelog entries that only appear after client-side rendering are invisible to the parsers.
-- **Pricing history depends on the Wayback Machine.** No captures means no history. archive.org also rate-limits and blocks some networks (VPN and datacentre ranges in particular); when that happens the report says so and falls back to the live page.
-- **Parsers are heuristic.** Plan cards, job lists and HTML changelogs are recognised by common patterns. Unusual layouts will be missed, and a blog feed advertised on the homepage can be mistaken for a changelog.
-- **Job boards are not followed.** Roles hosted on Greenhouse, Lever, Ashby and similar are detected but not fetched in this version.
-- **Reviews cover one store and one storefront.** Apple's public feed only, most recent reviews only, and you supply the app id.
-- **A signal is not a fact about intent.** A DNS record can outlive a contract. A job post can be evergreen. Treat "low" and "medium" findings as leads to check.
-- **The Claude synthesis path has not been exercised in this repository's example.** The committed report was generated with the offline rules. The model call is typed against the current Anthropic SDK and its output is validated, but run it yourself before relying on it.
+| Layer | Built with |
+|---|---|
+| CLI and library | TypeScript, Node 22+ ES modules, npm workspaces |
+| Parsing | cheerio, fast-xml-parser |
+| Synthesis | Offline rules; optional Anthropic SDK |
+| MCP server | `@modelcontextprotocol/sdk`, zod, stdio transport |
+| Tests | `node --test` against the local demo site |
+| Tutorial video | Remotion project in `tutorial/` |
 
-## Roadmap
+**Status**
 
-- Follow public job-board APIs (Greenhouse, Lever, Ashby) where robots.txt allows
-- Google Play reviews alongside the App Store
-- Subdomain and status-page signals, GitHub organisation activity
-- Optional headless rendering for JavaScript-only pricing pages
-- Diff two reports of the same company over time
-- Publish to npm so `npx outside-in` works without cloning
+| Part | State |
+|---|---|
+| Six collectors, HTTP gate, offline synthesis, report | Built. 7 tests pass. Run only against the fictional demo site. |
+| Claude synthesis | Written and typed. Never run in this repository. |
+| MCP server | Builds. Not run here. |
+| Live company domains | Not tested in this repository. |
+| Distribution | Not published on npm. No CI. |
 
-## License
+**Roadmap.** As listed in the repository's previous README:
 
-[MIT](LICENSE)
+1. Follow public job-board APIs (Greenhouse, Lever, Ashby) where robots.txt allows.
+2. Google Play reviews alongside the App Store.
+3. Subdomain and status-page signals, GitHub organisation activity.
+4. Optional headless rendering for pricing pages that need JavaScript.
+5. Compare two reports of the same company over time.
+6. Publish to npm so `npx outside-in` works without cloning.
+
+**Documents**
+
+| File | Contents |
+|---|---|
+| [`examples/report/report.md`](examples/report/report.md) | Full example report on the fictional company, offline rules |
+| [`examples/demo-site/README.md`](examples/demo-site/README.md) | What the demo site serves and why |
+| [`media/tutorial.mp4`](media/tutorial.mp4?raw=true) | 72-second explainer video, 1920x1080, 3.8 MB download |
+
+<picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset=".github/assets/rule-mobile-07-dark.svg">
+  <source media="(max-width: 600px)" srcset=".github/assets/rule-mobile-07-light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/rule-07-dark.svg">
+  <img src=".github/assets/rule-07-light.svg" width="100%" alt="07 License">
+</picture>
+
+MIT. See [`LICENSE`](LICENSE).
+
+Respect the terms of the sites you profile. Do not point the tool at individuals.
