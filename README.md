@@ -6,12 +6,7 @@ Evidence-backed company profiles from public signals.
 
 <sub>From `examples/report/report.json` and the grading rule in `cli/src/synthesize.ts`. A fictional demo company on a local demo site.</sub>
 
-<picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset=".github/assets/rule-mobile-01-dark.svg">
-  <source media="(max-width: 600px)" srcset=".github/assets/rule-mobile-01-light.svg">
-  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/rule-01-dark.svg">
-  <img src=".github/assets/rule-01-light.svg" width="100%" alt="01 What it is">
-</picture>
+## What it is
 
 Outside-In builds a profile of a company from what it publishes: its website, its pricing page and
 the archived copies of it, its job posts, its changelog, its DNS records and its App Store reviews.
@@ -22,12 +17,7 @@ offered to AI agents as an MCP server.
 It is a prototype, version 0.1.0. It has been run end to end only against a fictional company served
 from this repository. It is not published on npm.
 
-<picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset=".github/assets/rule-mobile-02-dark.svg">
-  <source media="(max-width: 600px)" srcset=".github/assets/rule-mobile-02-light.svg">
-  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/rule-02-dark.svg">
-  <img src=".github/assets/rule-02-light.svg" width="100%" alt="02 Why it exists">
-</picture>
+## Why it exists
 
 **The problem.** Research on a company usually ends in a pile of browser tabs or in a confident
 paragraph from a language model with no sources behind it. Neither can be handed to a colleague and
@@ -41,12 +31,7 @@ its confidence comes from the evidence rather than from the wording.
 agents that should cite their sources when they describe one. It reads only public pages. It is
 meant for companies, not people.
 
-<picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset=".github/assets/rule-mobile-03-dark.svg">
-  <source media="(max-width: 600px)" srcset=".github/assets/rule-mobile-03-light.svg">
-  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/rule-03-dark.svg">
-  <img src=".github/assets/rule-03-light.svg" width="100%" alt="03 How it works">
-</picture>
+## How it works
 
 1. **Domain in.** `outside-in <domain>` takes one domain. An App Store id is optional and switches on
    the reviews collector.
@@ -70,12 +55,7 @@ meant for companies, not people.
 7. **Report.** `report.md` holds the summary, findings, what could not be established, an evidence table
    and the request log. `report.json` holds the same data for programs.
 
-<picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset=".github/assets/rule-mobile-04-dark.svg">
-  <source media="(max-width: 600px)" srcset=".github/assets/rule-mobile-04-light.svg">
-  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/rule-04-dark.svg">
-  <img src=".github/assets/rule-04-light.svg" width="100%" alt="04 Capabilities">
-</picture>
+## Capabilities
 
 What the code does today. All of it has been exercised only against the fictional demo company.
 
@@ -111,12 +91,7 @@ Known limits, from the code and the previous README:
 - A signal is not proof of intent. Treat "low" and "medium" findings as leads to check.
 - The Claude path has never been run in this repository. The committed example uses the offline rules.
 
-<picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset=".github/assets/rule-mobile-05-dark.svg">
-  <source media="(max-width: 600px)" srcset=".github/assets/rule-mobile-05-light.svg">
-  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/rule-05-dark.svg">
-  <img src=".github/assets/rule-05-light.svg" width="100%" alt="05 Quick start">
-</picture>
+## Quick start
 
 Requires Node 22 or newer. The commands below were run on Windows 11 with Node 26.13.0 and npm 11.20.0.
 macOS and Linux were not tested.
@@ -155,12 +130,7 @@ Not run here: profiling a real domain (`npx outside-in <domain>`), the Claude sy
 `ANTHROPIC_API_KEY`, and the MCP server (`node mcp/dist/server.js`). The option list is in
 `--help`; the MCP tools are described in [`mcp/src/server.ts`](mcp/src/server.ts).
 
-<picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset=".github/assets/rule-mobile-06-dark.svg">
-  <source media="(max-width: 600px)" srcset=".github/assets/rule-mobile-06-light.svg">
-  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/rule-06-dark.svg">
-  <img src=".github/assets/rule-06-light.svg" width="100%" alt="06 Stack, status, roadmap">
-</picture>
+## Stack, status, roadmap
 
 **Stack**
 
@@ -200,12 +170,7 @@ Not run here: profiling a real domain (`npx outside-in <domain>`), the Claude sy
 | [`examples/demo-site/README.md`](examples/demo-site/README.md) | What the demo site serves and why |
 | [`media/tutorial.mp4`](media/tutorial.mp4?raw=true) | 72-second explainer video, 1920x1080, 3.8 MB download |
 
-<picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset=".github/assets/rule-mobile-07-dark.svg">
-  <source media="(max-width: 600px)" srcset=".github/assets/rule-mobile-07-light.svg">
-  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/rule-07-dark.svg">
-  <img src=".github/assets/rule-07-light.svg" width="100%" alt="07 License">
-</picture>
+## License
 
 MIT. See [`LICENSE`](LICENSE).
 
